@@ -9,4 +9,5 @@ It takes two parameters in input:
 In this way the script can obtain the key without repetition.
 
 N.B. If you want reuse the key, you have to extend the length of the key. For example in python:
+
 key_repeated = previous_key * length
