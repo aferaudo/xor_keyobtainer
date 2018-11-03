@@ -38,9 +38,9 @@ def main (argv):
     
     # In this example key is qw8j
 
-    # In this case key is to short, so we have to extend the key
+    # In this case key is too short. This means that we have to extend the key!
     # For example we can do it manually, but we have to know how many
-    # character we want to hide
+    # character we want to hide and how key is made
     # key_tmp = key.decode() + "w"
     # print(key_tmp.encode())
 
