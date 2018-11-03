@@ -9,7 +9,7 @@ def xor(data, key):
     return bytearray(a^b for a, b in zip(*map(bytearray, [data, key]))) 
 
 def print_help():
-    print("python3 cipher.py [string_plain] [string_hide_base64]")
+    print("python3 cipher.py [plain_text] [hide_text_base64]")
 
 
 
@@ -19,20 +19,21 @@ def main (argv):
         print_help()
         exit(0)
 
-    json_string = sys.argv[1]
-    print("Json string received: " + json_string)
+    print("############KEY OBTAINER XOR-CIPHER############\n\n")
+    plain_text = sys.argv[1]
+    print("Plain text received: " + plain_text)
 
-    string_base64 = sys.argv[2]
-    print("Base64 received: " + string_base64)
+    hide_text_base64 = sys.argv[2]
+    print("Base64 received: " +  hide_text_base64)
 
-    json_string_bin = json_string.encode()
-    print("Json string bin: " + json_string_bin.decode())
+    plain_text_bin = plain_text.encode()
+    print("Plain text binary: " + plain_text_bin.decode())
     
-    base64_ciph = base64.b64decode(string_base64)
+    base64_ciph = base64.b64decode(hide_text_base64)
     print("First hide_text: " + str(base64_ciph))
 
     # Find key: Be careful! The key must be longer then plain text that you have to hide
-    key_repeated = xor(base64_ciph, json_string_bin)
+    key_repeated = xor(base64_ciph, plain_text_bin)
     print("Key with repetition: " + str(key_repeated))
     
     # In this example key is qw8j
@@ -53,16 +54,7 @@ def main (argv):
 
     print("Key without repetition: " + str(key))
 
-    # Now we choose the length (for example 256)
-    key_length = 256
-    key_repeated = key * key_length
-    # print(key_repeated)
-
-    plain_json_string = '{"showpassword":"yes","bgcolor":"#ffffff"}'
-    print("Start cipher string json " + plain_json_string)
-
-    hide_json_string = xor(plain_json_string.encode(), key_repeated.encode())
-    print("Base64 string to send: " + str(base64.b64encode(hide_json_string)))
+    print("\n\nNow you can use this key to make your own hide text\n\n")
 
     
 if __name__ == '__main__':
